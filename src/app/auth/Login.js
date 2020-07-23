@@ -1,39 +1,60 @@
-import { useState } from 'react';
-import useAuthWrapper from './useAuthWrapper';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
+import AuthWrapper from './AuthWrapper';
 import { client } from '../client';
-
-const fields = [
-  {
-    name: 'login',
-    label: 'Login',
-  },
-  {
-    name: 'password',
-    label: 'Password',
-  }
-];
+import { isTokenValid } from '../helper';
 
 const Login = () => {
   const [state, setState] = useState({
-    login: '',
+    username: '',
     password: '',
   });
 
+  const [authError, setAuthError] = useState(false);
+  const history = useHistory();
 
-  const onClick = () => {
+  useEffect(() => {
+    if (isTokenValid()) {
+      history.push('/');
+    }
+  }, [history]);
 
+  const handleChange = event => {
+    state[event.target.name] = event.target.value;
+    setState({ ...state });
   };
 
-  const wrappedField = useAuthWrapper({
-    fields,
-    state,
-    setState,
-    onClick,
-    authType: 'login',
-  });
+  const onClick = (event) => {
+    event.preventDefault();
+    client.post('/auth/login', state).then(response => {
+      localStorage.setItem('token', response.data.token);
+      history.push('/');
+    }).catch(error => {
+      setAuthError(error.response.data.errors.message);
+    });
+  };
 
   return (
-    wrappedField
+    <AuthWrapper onSubmit={onClick} authType='login' apiError={authError}>
+      <Form.Group>
+        <Form.Label>Username</Form.Label>
+        <Form.Control
+          name='username'
+          onChange={handleChange}
+          value={state.username}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Password</Form.Label>
+        <Form.Control
+          name='password'
+          type='password'
+          onChange={handleChange}
+          value={state.password}
+        />
+      </Form.Group>
+    </AuthWrapper>
   )
 };
 

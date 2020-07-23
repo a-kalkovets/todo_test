@@ -18,17 +18,18 @@ module.exports = {
       .trim()
       .exists().withMessage('Birthday fields is required')
       .custom(value => {
-        const validator = new RegExp(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/);
+        const validator = new RegExp(config.validation.birthday.regex);
         return validator.test(value);
       }).withMessage(() => 'Incorrect date format'),
     body('phone')
       .trim()
       .exists().withMessage('Phone fields is required')
-        .withMessage(`Min length: ${config.minNameLength}. Max length: ${config.maxNameLength}`)
+      .isLength({ min: config.validation.phone.length })
+        .withMessage(`Min length: ${config.validation.phone.length}. Max length: ${config.validation.phone.length}`)
       .custom(value => {
-        const validator = new RegExp(/^\d{3}\-\d{3}\-\d{4}$/);
+        const validator = new RegExp(/^\d{10}$/);
         return validator.test(value);
-      }).withMessage(() => 'Incorrect phone format. Must be: 999-999-9999'),
+      }).withMessage(() => 'Incorrect phone format'),
     body('username')
       .trim()
       .exists().withMessage('Username field is required')

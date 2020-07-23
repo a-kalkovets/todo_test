@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
 import Header from './Header';
 import Footer from './Footer';
+import Body from './Body';
 
 const TodoList = () => {
   return (
@@ -10,6 +11,7 @@ const TodoList = () => {
         <Card>
           <Card.Body>
             <Header/>
+            <Body/>
             <Footer/>
           </Card.Body>
         </Card>

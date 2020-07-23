@@ -5,6 +5,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+require('dotenv').config({path: __dirname + '/.env'})
+
 const whitelist = [
   'http://localhost:3000',
 ];
