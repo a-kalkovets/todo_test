@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import AuthWrapper from './AuthWrapper';
@@ -23,6 +23,10 @@ const Registration = () => {
       history.push('/');
     }
   }, [history]);
+
+  const disableError = () => {
+    setUniqueUsername(true);
+  };
 
   const onSubmit = (data) => {
     const phone = data.phone.replaceAll('-', '');
@@ -53,14 +57,14 @@ const Registration = () => {
         name='name'
         innerRef={register({
           required: true,
-          minLength: config.validation.name.min,
-          axLength: config.validation.name.max
+          minLength: config.validation.user.name.min,
+          axLength: config.validation.user.name.max
         })}
         error={errors.name}
         errorMessages={{
           required: 'Field is required',
-          minLength: `Min length: ${config.validation.name.min} chars`,
-          maxLength: `Max length: ${config.validation.name.min} chars`,
+          minLength: `Min length: ${config.validation.user.name.min} chars`,
+          maxLength: `Max length: ${config.validation.user.name.min} chars`,
         }}
       />
       <TextValidator
@@ -68,14 +72,14 @@ const Registration = () => {
         name='address'
         innerRef={register({
           required: true,
-          minLength: config.validation.address.min,
-          maxLength: config.validation.address.max
+          minLength: config.validation.user.address.min,
+          maxLength: config.validation.user.address.max
         })}
         error={errors.address}
         errorMessages={{
           required: 'Field is required',
-          minLength: `Min length: ${config.validation.address.min} chars`,
-          maxLength: `Max length: ${config.validation.address.min} chars`,
+          minLength: `Min length: ${config.validation.user.address.min} chars`,
+          maxLength: `Max length: ${config.validation.user.address.min} chars`,
         }}
       />
       <TextValidator
@@ -84,7 +88,7 @@ const Registration = () => {
         type='date'
         innerRef={register({
           required: true,
-          pattern: config.validation.birthday.regex
+          pattern: config.validation.user.birthday.regex
         })}
         error={errors.birthday}
         errorMessages={{
@@ -101,10 +105,11 @@ const Registration = () => {
       <TextValidator
         label='Username'
         name='username'
+        onFocus={disableError}
         innerRef={register({
           required: true,
-          minLength: config.validation.username.min,
-          maxLength: config.validation.username.max,
+          minLength: config.validation.user.username.min,
+          maxLength: config.validation.user.username.max,
           validate: {
             notUnique: () => uniqueUsername
           },
@@ -112,8 +117,8 @@ const Registration = () => {
         error={errors.username}
         errorMessages={{
           required: 'Field is required',
-          minLength: `Min length: ${config.validation.username.min} chars`,
-          maxLength: `Max length: ${config.validation.username.min} chars`,
+          minLength: `Min length: ${config.validation.user.username.min} chars`,
+          maxLength: `Max length: ${config.validation.user.username.min} chars`,
           notUnique: 'Username already in use',
         }}
       />

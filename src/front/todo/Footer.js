@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Footer = () => (
+const Footer = ({taskCount}) => (
   <footer>
+    <hr/>
     <div>
-      12 items left
+      {taskCount} items
     </div>
   </footer>
 )

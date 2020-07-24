@@ -7,25 +7,25 @@ module.exports = {
   'register': () => ([
     body('name')
       .trim()
-      .isLength({ min: config.validation.name.min, max: config.validation.name.max })
-        .withMessage(`Min length: ${config.validation.name.min}. Max length: ${config.validation.name.max}`),
+      .isLength({ min: config.validation.user.name.min, max: config.validation.user.name.max })
+        .withMessage(`Min length: ${config.validation.user.name.min}. Max length: ${config.validation.user.name.max}`),
     body('address')
       .trim()
       .exists().withMessage('Address field is required')
-      .isLength({ min: config.validation.address.min, max: config.validation.address.max })
-        .withMessage(`Min length: ${config.validation.address.min}. Max length: ${config.validation.address.max}`),
+      .isLength({ min: config.validation.user.address.min, max: config.validation.user.address.max })
+        .withMessage(`Min length: ${config.validation.user.address.min}. Max length: ${config.validation.user.address.max}`),
     body('birthday')
       .trim()
       .exists().withMessage('Birthday fields is required')
       .custom(value => {
-        const validator = new RegExp(config.validation.birthday.regex);
+        const validator = new RegExp(config.validation.user.birthday.regex);
         return validator.test(value);
       }).withMessage(() => 'Incorrect date format'),
     body('phone')
       .trim()
       .exists().withMessage('Phone fields is required')
-      .isLength({ min: config.validation.phone.length })
-        .withMessage(`Min length: ${config.validation.phone.length}. Max length: ${config.validation.phone.length}`)
+      .isLength({ min: config.validation.user.phone.length })
+        .withMessage(`Min length: ${config.validation.user.phone.length}. Max length: ${config.validation.user.phone.length}`)
       .custom(value => {
         const validator = new RegExp(/^\d{10}$/);
         return validator.test(value);
@@ -33,8 +33,8 @@ module.exports = {
     body('username')
       .trim()
       .exists().withMessage('Username field is required')
-      .isLength({ min: config.validation.username.min, max: config.validation.username.max })
-        .withMessage(`Min length: ${config.validation.username.min}. Max length: ${config.validation.username.max}`)
+      .isLength({ min: config.validation.user.username.min, max: config.validation.user.username.max })
+        .withMessage(`Min length: ${config.validation.user.username.min}. Max length: ${config.validation.user.username.max}`)
 
       //check username unique
       .custom(value => !Boolean(db.users.find(user => user.username === value)))
@@ -42,8 +42,8 @@ module.exports = {
     body('password')
       .trim()
       .exists().withMessage('Password field if required')
-      .isLength({ min: config.validation.password.min, max: config.validation.password.max })
-      .withMessage(`Min length: ${config.validation.password.min}. Max length: ${config.validation.password.max}`)
+      .isLength({ min: config.validation.user.password.min, max: config.validation.user.password.max })
+      .withMessage(`Min length: ${config.validation.user.password.min}. Max length: ${config.validation.user.password.max}`)
 
       //password strange
       .custom(value => {

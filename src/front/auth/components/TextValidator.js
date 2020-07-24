@@ -7,6 +7,7 @@ const TextValidator = ({
   error,
   errorMessages,
   type,
+  onFocus,
   innerRef,
 }) => {
   const errorText = () => {
@@ -27,6 +28,7 @@ const TextValidator = ({
       <Form.Control
         isInvalid={error}
         name={name}
+        onFocus={onFocus || null}
         ref={innerRef}
         type={type || 'text'}
       />

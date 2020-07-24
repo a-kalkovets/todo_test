@@ -5,8 +5,8 @@ import config from '../../../config';
 
 const errorMessages = {
   strength: 'Password must contain uppercase, lowercase and digit chars',
-  minLength: `Min length ${config.validation.password.min} chars`,
-  maxLength: `Max length ${config.validation.password.max} chars`,
+  minLength: `Min length ${config.validation.user.password.min} chars`,
+  maxLength: `Max length ${config.validation.user.password.max} chars`,
 }
 
 const schema = new PasswordStrange()
@@ -39,8 +39,8 @@ const PasswordValidator = ({
         isInvalid={error}
         name='password'
         ref={innerRef({
-          minLength: config.validation.password.min,
-          maxLength: config.validation.password.max,
+          minLength: config.validation.user.password.min,
+          maxLength: config.validation.user.password.max,
           validate: {
             strength: value => schema.validate(value)
           }

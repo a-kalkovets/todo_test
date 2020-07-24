@@ -1,10 +1,10 @@
 import React from 'react';
 import NewTask from './components/NewTask';
 
-const Header = () => (
+const Header = ({fetchTodoList}) => (
   <header>
     <h2 align='center' className='text-uppercase text-secondary'>Things to do</h2>
-    <NewTask/>
+    <NewTask fetchTodoList={fetchTodoList} />
   </header>
 );
 
