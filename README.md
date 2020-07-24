@@ -4,8 +4,9 @@
 
 ## How to run
 1. `npm install` in `/` and `/src/server` directories
-2. `npm run start` to start dev watcher of React app
-3. `npm run serve` to start node.js server
+2. Create `.env` file according to the `.env.example` in `/src/server directory`
+3. `npm run start` to start dev watcher of React app
+4. `npm run serve` to start node.js server
 
 ## Commands
 `npm run start` - run dev watcher for React  
