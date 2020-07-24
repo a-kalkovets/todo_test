@@ -2,6 +2,11 @@
 - Front directory located in `/src/front`
 - Server directory located in `/src/server`
 
+## How to run
+1. `npm install` in `/` and `/src/server` directories
+2. `npm run start` to start dev watcher of React app
+3. `npm run serve` to start node.js server
+
 ## Commands
 `npm run start` - run dev watcher for React  
 `npm run serve` - start node.js server  
