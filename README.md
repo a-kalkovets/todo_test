@@ -11,4 +11,8 @@
 - To change title of todo list just click on him
 - To change status of task just click on a status of the task
 - To delete task click on the status and click on "Delete" button
-- To change task color you need to click on a color dot and select new color 
+- To change task color you need to click on a color dot and select new color
+
+##Test user
+username: `shikachi`  
+password: `TqSqDiDur9bFz5a` 

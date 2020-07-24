@@ -5,7 +5,7 @@ const db = {
     birthday: '2020-07-01',
     phone: '1324325324',
     username: 'shikachi',
-    password: 'd96eab715a133b7c70f607f0d5f853b335182ef82f9172bf3a0cf54efc50461c'
+    password: 'defdfa42c150bc5abd105b8fde8870fe3537175944dd30a271a6ca63fbfb4a69'
   }],
   todo: [
     {
